@@ -1,0 +1,1192 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>АвтоМото Братск</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800;1,900&display=swap">
+<style>
+/* Layout: «мотосалонный» стиль — чёрная шапка, жирные наклонные заголовки в два цвета,
+   большой слайдер с живыми фото витрины, карточки с фото, квиз подбора. Фирменный красный АвтоМото.
+   Сознательно одна светлая тема (как у мотосалонов), цвета заданы явно. */
+:root{
+  --black:#0D0D0D; --ink:#141414; --muted:#5E5E5E; --line:#E3E3E3; --soft:#F3F3F3; --white:#FFFFFF;
+  --red:#E30613; --red-dk:#B8040F; --red-hi:#FF4550; --ok:#147A3C; --wait:#8A5300; --note:#FFF2C9; --note-ink:#4D3A00;
+  --f:"Montserrat","Segoe UI",system-ui,-apple-system,sans-serif;
+  --r:8px; --wrap:1240px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--white);color:var(--ink);font:15px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button,input,select,textarea{color:inherit;font:inherit}
+option{background:var(--white);color:var(--ink)}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:clamp(16px,3vw,28px)}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px;border-radius:4px}
+
+/* фирменные заголовки: жирный курсив, капс, первое слово красным */
+.tt{font-style:italic;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:1.02}
+.tt em{font-style:inherit;color:var(--red)}
+h2.tt{font-size:clamp(24px,3.4vw,38px)}
+
+/* прототип */
+.proto{background:var(--note);color:var(--note-ink);font-size:12.5px}
+.proto .wrap{padding-block:6px}
+
+/* промо-полоса */
+.promo{background:var(--black);color:var(--white);border-bottom:2px solid var(--red)}
+.promo .wrap{display:flex;justify-content:center;align-items:center;gap:14px;padding-block:9px;flex-wrap:wrap;text-align:center}
+.promo b{font-style:italic;font-weight:900;text-transform:uppercase;font-size:clamp(14px,1.8vw,19px);letter-spacing:.01em}
+.promo b em{font-style:inherit;color:var(--red-hi)}
+.promo a{font-size:12px;font-weight:700;text-transform:uppercase;background:var(--red);color:var(--white);padding:5px 10px;border-radius:4px;text-decoration:none}
+
+/* шапка */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30}
+.hbar{background:var(--black);color:var(--white)}
+.hsub{display:flex;gap:18px;font-size:12.5px;color:#BDBDBD;padding-block:8px;border-bottom:1px solid #262626;flex-wrap:wrap}
+.hsub a{text-decoration:none}
+.hsub a:hover{color:var(--white)}
+.hsub .city{color:var(--white);font-weight:600;margin-right:auto}
+.hsub .city::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:7px}
+.hrow{display:flex;align-items:center;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.logo img{width:54px;height:54px;border-radius:50%}
+.logo b{font-style:italic;font-weight:900;font-size:19px;text-transform:uppercase;line-height:1}
+.logo b em{font-style:inherit;color:var(--red)}
+.hbar .logo b em,footer .logo b em{color:var(--red-hi)}
+.burger{width:46px;height:46px;border-radius:var(--r);background:var(--red);border:0;display:grid;place-items:center;cursor:pointer;flex:none;text-decoration:none}
+.burger span{display:block;width:20px;height:2px;background:var(--white);box-shadow:0 6px 0 var(--white),0 -6px 0 var(--white)}
+.search{flex:1;min-width:0;display:flex;background:var(--white);border-radius:var(--r);overflow:hidden;height:46px}
+.search input{flex:1;min-width:0;border:0;background:transparent;padding:0 16px;color:var(--ink);font-size:14px}
+.search input:focus{outline:none}
+.search button{border:0;background:transparent;padding:0 14px;cursor:pointer;color:var(--ink)}
+.hcontact{display:flex;flex-direction:column;line-height:1.25;flex:none}
+.hcontact .hph{font-weight:800;font-size:19px;text-decoration:none;white-space:nowrap}
+.hcontact .open{font-size:12px;color:#BDBDBD}
+.hcontact .open i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#33C26B;margin-right:5px;vertical-align:1px}
+.hcontact .open.closed i{background:#888}
+.hicons{display:flex;gap:6px;flex:none}
+.hico{position:relative;width:46px;height:46px;display:grid;place-items:center;border-radius:var(--r);text-decoration:none;color:var(--white)}
+.hico:hover{background:#1F1F1F}
+.hico svg{width:26px;height:26px}
+.hico .lbl{position:absolute;bottom:2px;font-size:9px;font-weight:700;letter-spacing:.04em}
+.hico .cnt{position:absolute;top:3px;right:3px;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:var(--white);font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+nav.cats{background:var(--white);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+nav.cats::-webkit-scrollbar{display:none}
+nav.cats .wrap{display:flex;gap:4px 22px;padding-block:11px}
+nav.cats a{white-space:nowrap;text-decoration:none;font-style:italic;font-weight:900;text-transform:uppercase;font-size:13.5px;letter-spacing:.01em;color:var(--ink)}
+nav.cats a:hover,nav.cats a.on{color:var(--red)}
+@media (max-width:980px){.hcontact{display:none}.hsub .hide-m{display:none}}
+@media (max-width:640px){
+  .hrow{flex-wrap:wrap;gap:10px;padding-block:10px}
+  .search{order:3;flex-basis:100%;height:42px}
+  .logo img{width:44px;height:44px}
+  .logo b{font-size:16px}
+  .hicons{margin-left:auto}
+  .burger{display:none}
+  .hsub{gap:12px}
+}
+
+/* кнопки */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:var(--r);font:800 14px/1.2 var(--f);text-transform:uppercase;letter-spacing:.02em;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background .15s,color .15s,border-color .15s}
+.btn.red{background:var(--red);color:var(--white)}
+.btn.red:hover{background:var(--red-dk)}
+.btn.black{background:var(--black);color:var(--white)}
+.btn.black:hover{background:#2A2A2A}
+.btn.line{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn.line:hover{background:var(--ink);color:var(--white)}
+.btn.wline{border-color:var(--white);color:var(--white);background:transparent}
+.btn.wline:hover{background:var(--white);color:var(--ink)}
+.btn.sm{min-height:40px;padding:0 16px;font-size:12.5px}
+
+main{min-height:60vh}
+section.blk{padding-block:clamp(36px,5vw,64px)}
+.shead{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.shead .more{font-weight:800;text-transform:uppercase;font-size:13px;text-decoration:none;color:var(--red)}
+.shead .more:hover{text-decoration:underline}
+
+/* слайдер */
+.slider{position:relative;background:var(--black);overflow:hidden}
+.slides{position:relative;aspect-ratio:16/7;max-height:560px;width:100%}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .6s;pointer-events:none}
+.slide.on{opacity:1;pointer-events:auto}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.55) 42%,rgba(0,0,0,0) 72%)}
+.slide .cap{position:absolute;inset:0;z-index:2;display:flex;align-items:center}
+.slide .cap .wrap{width:100%}
+.slide .cap-in{max-width:560px;color:var(--white);display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+.slide h1,.slide .h1{font-size:clamp(30px,5.6vw,72px)}
+.slide .from{font-style:italic;font-weight:900;text-transform:uppercase;font-size:clamp(22px,3.6vw,46px);line-height:1}
+.slide .from em,.slide .tt em{font-style:inherit;color:var(--red-hi)}
+.slide .sub{font-size:clamp(13px,1.4vw,16px);font-weight:600;color:#E6E6E6;max-width:44ch}
+.sl-ctl{position:absolute;right:clamp(16px,3vw,28px);bottom:18px;z-index:3;display:flex;gap:8px;align-items:center}
+.sl-ctl button{width:44px;height:44px;border-radius:50%;border:0;background:var(--white);color:var(--ink);cursor:pointer;font-size:20px;font-weight:700;display:grid;place-items:center}
+.sl-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:24px;z-index:3;display:flex;gap:8px}
+.sl-dots button{width:28px;height:4px;border:0;border-radius:2px;background:rgba(255,255,255,.4);cursor:pointer;padding:0}
+.sl-dots button.on{background:var(--red)}
+@media (max-width:640px){
+  .slides{aspect-ratio:4/5;max-height:none}
+  .slide::after{background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.6) 48%,rgba(0,0,0,.05) 80%)}
+  .slide .cap{align-items:flex-end;padding-bottom:70px}
+  .sl-ctl{display:none}
+}
+
+/* полоса доверия */
+.trust{background:var(--black);color:var(--white)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.trust .it{padding:18px 16px;border-left:1px solid #2A2A2A;display:flex;flex-direction:column;gap:2px}
+.trust .it:first-child{border-left:0}
+.trust b{font-style:italic;font-weight:900;font-size:22px;text-transform:uppercase;line-height:1.1}
+.trust b em{font-style:inherit;color:var(--red-hi)}
+.trust span{font-size:12.5px;color:#BDBDBD}
+@media (max-width:820px){.trust .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.trust .it:nth-child(3){border-left:0}.trust .it{border-top:1px solid #2A2A2A}}
+
+/* карточки товаров */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+@media (max-width:540px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+.rail > *{scroll-snap-align:start}
+@media (max-width:540px){.rail{grid-auto-columns:72%}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;text-decoration:none;transition:box-shadow .15s,border-color .15s}
+.card:hover{border-color:#CFCFCF;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.pic{position:relative;aspect-ratio:4/3;background:var(--soft);overflow:hidden;max-width:100%}
+.pic img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.card:hover .pic img{transform:scale(1.04)}
+.badge{position:absolute;top:10px;left:10px;font-style:italic;font-weight:900;font-size:11.5px;text-transform:uppercase;padding:5px 9px;border-radius:4px;letter-spacing:.02em}
+.badge.in{background:var(--red);color:var(--white)}
+.badge.order{background:var(--black);color:var(--white)}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .nm{font-weight:700;font-size:14.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.card .kp{font-size:12.5px;color:var(--muted)}
+.card .bot{margin-top:auto;display:flex;align-items:end;justify-content:space-between;gap:8px;padding-top:6px}
+.card .pr{font-weight:900;font-size:20px;line-height:1.1;white-space:nowrap}
+.card .cr{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);border-radius:4px;padding:3px 6px;white-space:nowrap}
+.stock{font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:6px}
+.stock::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.stock.in{color:var(--ok)}
+.stock.order{color:var(--wait)}
+@media (max-width:540px){.card .body{padding:10px}.card .pr{font-size:16px}.card .kp,.card .cr{display:none}.card .nm{font-size:13px}}
+
+/* квиз */
+.quiz{background:var(--soft);border-radius:14px;padding:clamp(18px,3vw,36px)}
+.qsteps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px}
+.qsteps div{font-size:12px;font-weight:700;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:8px;border-bottom:3px solid #D5D5D5}
+.qsteps div.on{color:var(--ink);border-color:var(--red)}
+.qsteps div.done{color:var(--ink);border-color:var(--ink)}
+.qtitle{font-size:clamp(20px,2.6vw,30px);margin-bottom:6px}
+.qhint{color:var(--muted);margin-bottom:18px}
+.qopts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.qopt{background:var(--white);border:2px solid transparent;border-radius:var(--r);padding:0;cursor:pointer;text-align:center;display:flex;flex-direction:column;overflow:hidden;transition:border-color .15s,transform .15s}
+.qopt:hover{border-color:var(--red);transform:translateY(-2px)}
+.qopt .pic{aspect-ratio:4/3}
+.qopt b{display:block;padding:10px 8px;font-style:italic;font-weight:900;text-transform:uppercase;font-size:13px}
+.qopt.txt{padding:18px 14px;justify-content:center;min-height:84px}
+.qopt.txt b{padding:0}
+.qopt.txt small{display:block;color:var(--muted);font-size:12.5px;margin-top:4px;font-weight:500}
+.qback{margin-top:16px;background:none;border:0;color:var(--muted);font-weight:700;cursor:pointer;text-decoration:underline;padding:0}
+.qres{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;align-items:start}
+.qres > *{min-width:0}
+@media (max-width:860px){.qres{grid-template-columns:1fr}}
+
+/* о салоне */
+.about{position:relative;overflow:hidden}
+.about .deco{position:absolute;right:-60px;top:10px;width:520px;max-width:60%;color:#ECECEC;pointer-events:none;z-index:0}
+.about .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,4vw,48px);align-items:center}
+.about .wrap > *{min-width:0}
+.about .txt{display:flex;flex-direction:column;gap:14px}
+.about .photo{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;max-width:100%}
+.about .photo img{width:100%;height:100%;object-fit:cover}
+.about .photo .stamp{position:absolute;right:0;bottom:0;background:var(--red);color:var(--white);padding:16px 18px;font-style:italic;font-weight:900;text-transform:uppercase;font-size:clamp(14px,1.6vw,19px);line-height:1.1}
+.about ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.about li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-weight:500}
+.about li::before{content:"";width:14px;height:14px;margin-top:4px;background:var(--red);clip-path:polygon(0 0,100% 50%,0 100%)}
+@media (max-width:860px){.about .wrap{grid-template-columns:1fr}.about .deco{display:none}}
+
+/* кредит + подбор */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.duo > *{min-width:0}
+@media (max-width:860px){.duo{grid-template-columns:1fr}}
+.panel{border-radius:14px;padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:14px}
+.panel.black{background:var(--black);color:var(--white)}
+.panel.red{background:var(--red);color:var(--white)}
+.panel.soft{background:var(--soft)}
+.panel .lead{font-weight:500}
+.panel.black .lead{color:#D6D6D6}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start;font-weight:500}
+.steps li::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;background:var(--red);color:var(--white);display:grid;place-items:center;font-weight:900;font-style:italic}
+.panel.red .steps li::before{background:var(--white);color:var(--red)}
+
+/* магазины */
+.stores{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.stores{grid-template-columns:1fr}}
+.store{border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:5px}
+.store.main{background:var(--black);color:var(--white);border-color:var(--black)}
+.store .lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--red-dk)}
+.store.main .lbl{color:var(--red-hi)}
+.panel.black .tt em{color:var(--red-hi)}
+.store h3{font-style:italic;font-weight:900;text-transform:uppercase;font-size:17px}
+.store .s{font-size:13.5px;opacity:.75}
+
+/* faq */
+.faq{display:grid;gap:8px;max-width:900px}
+.faq details{border:1px solid var(--line);border-radius:var(--r);padding:0 18px}
+.faq details[open]{border-color:var(--ink)}
+.faq summary{cursor:pointer;padding:16px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;line-height:1;color:var(--red);font-weight:800}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding-bottom:16px;color:var(--muted);max-width:72ch}
+
+/* каталог */
+.crumbs{font-size:13px;color:var(--muted);padding-block:18px 6px;display:flex;flex-wrap:wrap;gap:6px}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--white);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;cursor:pointer;text-decoration:none}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.cat-layout{display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start;padding-bottom:56px}
+.cat-layout > *{min-width:0}
+.filters{background:var(--soft);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:18px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 190px)}
+.filters h3{font-size:13px;font-weight:800;text-transform:uppercase}
+.fgroup{display:flex;flex-direction:column;gap:8px}
+.fgroup label.ck{display:flex;gap:8px;align-items:center;font-size:14px;cursor:pointer}
+.fgroup input[type=checkbox]{width:18px;height:18px;accent-color:var(--red)}
+.prow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.field .fl{font-size:13px;font-weight:700}
+input.in,select.in,textarea.in{width:100%;min-height:46px;padding:10px 12px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--white);color:var(--ink)}
+input.in:focus,select.in:focus{outline:none;border-color:var(--ink)}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.fbtn{display:none}
+@media (max-width:860px){
+  .cat-layout{grid-template-columns:1fr}
+  .filters{position:fixed;inset:auto 0 0 0;z-index:50;border-radius:16px 16px 0 0;max-height:80%;overflow:auto;transform:translateY(105%);transition:transform .2s;background:var(--white);padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .filters.open{transform:none}
+  .fbtn{display:inline-flex}
+}
+.empty{border:1.5px dashed var(--line);border-radius:var(--r);padding:32px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:45}
+
+/* товар */
+.pgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(20px,4vw,48px);align-items:start;padding-block:8px 32px}
+.pgrid > *{min-width:0}
+@media (max-width:860px){.pgrid{grid-template-columns:1fr}}
+.pgal .pic{border-radius:12px}
+.pinfo{display:flex;flex-direction:column;gap:16px}
+.pinfo h1{font-size:clamp(22px,3vw,34px)}
+.pmeta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted)}
+.pprice{font-weight:900;font-size:clamp(30px,3.6vw,42px);line-height:1}
+.statusbox{border-radius:var(--r);padding:12px 14px;background:var(--soft);display:flex;flex-direction:column;gap:4px;font-size:13.5px}
+.statusbox .stock{font-size:14.5px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.actions .btn{width:100%}
+.actions .wide{grid-column:1/-1}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:var(--r);overflow:hidden;height:48px}
+.qty button{width:44px;height:100%;border:0;background:var(--white);font-size:20px;cursor:pointer}
+.qty input{width:48px;text-align:center;border:0;background:var(--white);font-weight:700;height:100%}
+.facts{display:grid;gap:10px;list-style:none;padding:0;margin:0}
+.facts li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:14px}
+.facts li .ico{width:26px;height:26px;border-radius:50%;background:var(--black);color:var(--white);display:grid;place-items:center;font-weight:800;font-size:12px}
+.phone-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.phone-line b{font-size:20px;font-weight:800;user-select:all}
+.link{background:none;border:0;padding:0;color:var(--muted);font-size:13px;cursor:pointer;text-decoration:underline}
+.specs{width:100%;border-collapse:collapse;font-size:14px}
+.specs th,.specs td{text-align:left;padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.specs th{font-weight:500;color:var(--muted);width:55%;padding-right:16px}
+.specs td{font-weight:700}
+.specs tr.grp th{color:var(--ink);font-weight:900;font-style:italic;text-transform:uppercase;padding-top:22px;font-size:13px}
+.formcard{background:var(--white);border:2px solid var(--ink);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.panel.black .formcard,.formcard.on-dark{border-color:var(--white)}
+.radios{display:flex;flex-wrap:wrap;gap:8px}
+.radios label{display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);border-radius:999px;padding:8px 12px;font-size:13.5px;font-weight:600;cursor:pointer}
+.radios label:has(input:checked){border-color:var(--ink);background:var(--soft)}
+.radios input{accent-color:var(--red)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--muted)}
+.consent input{width:18px;height:18px;margin-top:1px;accent-color:var(--red);flex:none}
+.err{color:var(--red-dk);font-size:13px;font-weight:700}
+.ok-box{border-radius:12px;background:var(--soft);padding:20px;display:flex;flex-direction:column;gap:8px}
+.ok-box h3{font-style:italic;font-weight:900;text-transform:uppercase;font-size:20px}
+
+/* корзина */
+.cart-layout{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start;padding-bottom:56px}
+.cart-layout > *{min-width:0}
+@media (max-width:860px){.cart-layout{grid-template-columns:1fr}}
+.citem{display:grid;grid-template-columns:84px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.citem .pic{border-radius:8px}
+.citem .ctl{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.citem .qty{height:36px}
+.citem .qty button{width:34px;font-size:17px}
+.citem .qty input{width:36px}
+.sum{display:flex;justify-content:space-between;font-size:14px;padding-block:5px}
+.sum.total{font-weight:900;font-size:20px;border-top:1px solid var(--line);padding-top:12px}
+.noimg{width:100%;height:100%;display:grid;place-items:center;color:#B5B5B5}
+.noimg svg{width:58%;height:58%}
+
+/* страницы */
+.prose{max-width:780px;display:flex;flex-direction:column;gap:16px;padding-bottom:56px}
+.prose h2{font-style:italic;font-weight:900;text-transform:uppercase;font-size:20px;margin-top:10px}
+.prose ul{margin:0;padding-left:20px;display:grid;gap:6px}
+
+/* подвал */
+footer.foot{background:var(--black);color:#CFCFCF;padding-block:36px 24px;font-size:13.5px}
+.fcols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+.fcols > *{min-width:0}
+.fcols h3{font-size:13px;font-weight:900;font-style:italic;text-transform:uppercase;color:var(--white);margin-bottom:10px}
+.fcols ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.fcols a{text-decoration:none}
+.fcols a:hover{color:var(--white)}
+.fcols .big{font-size:18px;font-weight:800;color:var(--white)}
+.legal{margin-top:26px;padding-top:16px;border-top:1px solid #2A2A2A;color:#8F8F8F;font-size:12.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.legal a{color:#BDBDBD}
+@media (max-width:820px){.fcols{grid-template-columns:1fr 1fr}}
+
+/* мобильная панель */
+.mbar{display:none}
+@media (max-width:760px){
+  .mbar{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--black);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+  .mbar a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;font-size:10.5px;font-weight:700;padding:4px 0;color:var(--white);position:relative;text-transform:uppercase}
+  .mbar svg{width:22px;height:22px}
+  .mbar a.call{color:var(--white)}
+  .mbar a.call svg{color:var(--red)}
+  .mbar .cnt{position:absolute;top:0;right:calc(50% - 22px);min-width:17px;height:17px;border-radius:9px;background:var(--red);font-size:10px;display:grid;place-items:center;padding:0 4px}
+  body{padding-bottom:70px}
+}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--black);color:var(--white);padding:11px 18px;border-radius:999px;font-size:14px;font-weight:600;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-moto" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="42" r="12"/><circle cx="76" cy="42" r="12"/><path d="M20 42 38 24h20l18 18M38 24l8 18h12l8-18M58 24l-4-10h10M30 22h12"/></g>
+    <g id="i-snow" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 52q0-6 8-6h22M44 52h40q8 0 8-6t-8-6H48q-8 0-8 6t4 6M30 46l12-18h26l16 12M42 28l6-12M44 16h12"/><circle cx="52" cy="46" r="2.5"/><circle cx="66" cy="46" r="2.5"/><circle cx="80" cy="46" r="2.5"/></g>
+    <g id="i-atv" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="44" r="11"/><circle cx="74" cy="44" r="11"/><path d="M8 32h32l8-8h16l24 8M40 32l4 12h8l4-12M50 24l-4-8h10"/></g>
+    <g id="i-oil" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M30 14h28l10 10v30H26V22zM36 8h12v6H36M34 30h26v14H34z"/></g>
+    <g id="i-gear" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 44q-2-32 30-32 30 0 30 26l-8 8H38q-4 0-6 6H20zM50 26h30M60 26v12"/></g>
+    <g id="i-bat" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="18" width="64" height="34" rx="3"/><path d="M24 18v-6h10v6M62 18v-6h10v6M26 34h8M30 30v8M62 34h8"/></g>
+    <g id="i-tool" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 48 58 16"/><circle cx="64" cy="12" r="8"/><path d="M14 52l8-4"/><rect x="30" y="34" width="44" height="18" rx="3"/><path d="M44 34v-4h16v4"/></g>
+    <g id="i-search" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></g>
+    <g id="i-phone" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></g>
+    <g id="i-chat" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></g>
+    <g id="i-cart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h3l2.5 11h10L21 7H7"/><circle cx="10" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></g>
+    <g id="i-grid" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></g>
+  </defs>
+</svg>
+
+<div class="proto" role="note"><div class="wrap"><b>Прототип.</b> Фото — с текущего сайта, цены и наличие — примеры. В рабочей версии каталог, цены и остатки будут приходить из 1С. Формы ничего не отправляют.</div></div>
+
+<div class="promo"><div class="wrap"><b><em>Сезон снегоходов</em> 2026/27 — кит-комплекты и мотобуксировщики в наличии</b><a href="#cat-snow">Смотреть</a></div></div>
+
+<header class="top">
+  <div class="hbar">
+    <div class="wrap">
+      <div class="hsub">
+        <span class="city">Братск</span>
+        <a href="#service">Сервис</a><a href="#credit">Кредит</a><a href="#delivery">Доставка и оплата</a><a class="hide-m" href="#order">Под заказ</a><a class="hide-m" href="#stores">Магазины</a><a class="hide-m" href="#contacts">Контакты</a>
+      </div>
+      <div class="hrow">
+        <a class="logo" href="#home" aria-label="АвтоМото — на главную"><img src="img/b/logo.png" alt="Логотип АвтоМото" width="54" height="54"><b>Авто<em>Мото</em></b></a>
+        <a class="burger" href="#catalog" aria-label="Каталог"><span></span></a>
+        <form class="search" id="searchForm" role="search">
+          <input id="q" type="search" placeholder="Я ищу снегоход, KAYO, прицеп, масло 2T…" aria-label="Поиск по каталогу" autocomplete="off">
+          <button type="submit" aria-label="Найти"><svg width="22" height="22" viewBox="0 0 24 24"><use href="#i-search"/></svg></button>
+        </form>
+        <div class="hcontact">
+          <a class="hph num" href="tel:+79643550022">+7 964 355-00-22</a>
+          <span class="open" id="openNow"><i></i>Пн–пт 10–19, сб–вс 10–18</span>
+        </div>
+        <div class="hicons">
+          <a class="hico" id="hMax" href="#" target="_blank" rel="noopener" aria-label="Написать в MAX"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg><span class="lbl">MAX</span></a>
+          <a class="hico" href="#cart" aria-label="Корзина"><svg viewBox="0 0 24 24"><use href="#i-cart"/></svg><span class="cnt num" id="cartCnt" hidden>0</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="cats" aria-label="Категории"><div class="wrap" id="catNav"></div></nav>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fcols">
+      <div>
+        <a class="logo" href="#home"><img src="img/b/logo.png" alt="" width="54" height="54"><b style="color:#fff">Авто<em>Мото</em></b></a>
+        <p style="margin-top:14px">Братск, Коммунальная ул., 6, павильон 25, 1 этаж.<br>Пн–пт 10:00–19:00, сб–вс 10:00–18:00.</p>
+        <p style="margin-top:10px"><span class="big num">+7 964 355-00-22</span> — менеджеры<br><span class="num">+7 964 811-00-03</span> — администрация</p>
+      </div>
+      <div><h3>Каталог</h3><ul id="fCats"></ul></div>
+      <div><h3>Покупателям</h3><ul>
+        <li><a href="#credit">Кредит и рассрочка</a></li>
+        <li><a href="#delivery">Доставка и оплата</a></li>
+        <li><a href="#service">Гарантия и сервис</a></li>
+        <li><a href="#order">Товары под заказ</a></li>
+        <li><a href="#stores">Магазины (6 точек)</a></li>
+      </ul></div>
+      <div><h3>Мы на связи</h3><ul>
+        <li><a id="fMax" href="#" target="_blank" rel="noopener">MAX</a></li>
+        <li><a id="fAvito" href="#" target="_blank" rel="noopener">Авито</a></li>
+        <li><a id="f2gis" href="#" target="_blank" rel="noopener">2ГИС — отзывы</a></li>
+        <li><a id="fVk" href="#" target="_blank" rel="noopener">ВКонтакте</a></li>
+      </ul></div>
+    </div>
+    <div class="legal">
+      <span>© АвтоМото, Братск. [Юрлицо, ИНН и ОГРН — добавить]</span>
+      <a href="#privacy">Политика обработки персональных данных</a>
+    </div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="Быстрые действия">
+  <a class="call" href="tel:+79643550022"><svg viewBox="0 0 24 24"><use href="#i-phone"/></svg>Позвонить</a>
+  <a id="mMax" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><use href="#i-chat"/></svg>MAX</a>
+  <a href="#catalog"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg>Каталог</a>
+  <a href="#cart"><svg viewBox="0 0 24 24"><use href="#i-cart"/></svg>Корзина<span class="cnt num" id="mCnt" hidden>0</span></a>
+</nav>
+
+<script>
+/* ======== НАСТРОЙКИ: заменить на реальные ======== */
+const CONTACTS = {
+  phone:'+7 964 355-00-22', admin:'+7 964 811-00-03',
+  max:'https://max.ru/',   // TODO: ссылка на чат магазина в MAX
+  avito:'https://www.avito.ru/brands/i305181110/all/transport?sellerId=b6056cad31aa36d23de3dfcb9c09f1b3',
+  gis:'https://2gis.ru/bratsk/firm/70000001006563702',
+  vk:'https://vk.com/avtomotopanorama'
+};
+const RATING = {value:'4,7', votes:59, reviews:37};
+const STORES = [
+  {main:true, name:'Мотосалон', addr:'Коммунальная ул., 6, павильон 25, 1 этаж', what:'Вся техника и прицепы, экипировка, масла. Оформление кредита.', hours:'Пн–пт 10–19, сб–вс 10–18'},
+  {name:'Точка 2', addr:'[адрес из 2ГИС]', what:'Масла, аккумуляторы, инструмент', hours:'[часы]'},
+  {name:'Точка 3', addr:'[адрес из 2ГИС]', what:'Масла, аккумуляторы, инструмент', hours:'[часы]'},
+  {name:'Точка 4', addr:'[адрес из 2ГИС]', what:'Масла, аккумуляторы, инструмент', hours:'[часы]'},
+  {name:'Точка 5', addr:'[адрес из 2ГИС]', what:'Масла, аккумуляторы, инструмент', hours:'[часы]'},
+  {name:'Точка 6', addr:'[адрес из 2ГИС]', what:'Масла, аккумуляторы, инструмент', hours:'[часы]'}
+];
+
+/* ======== КАТАЛОГ (пример; в рабочей версии — выгрузка из 1С). Номер в конце строки — фото img/p/NNN.jpg ======== */
+const CATS = [
+  {id:'snow',  name:'Снегоходы и кит-комплекты', short:'Снегоходы', tech:true, winter:true, cover:96},
+  {id:'tow',   name:'Мотобуксировщики и сани',   short:'Мотобуксировщики', tech:true, winter:true, cover:60},
+  {id:'moto',  name:'Мотоциклы',                 short:'Мотоциклы', tech:true, cover:36},
+  {id:'pit',   name:'Питбайки',                  short:'Питбайки', tech:true, cover:23},
+  {id:'atv',   name:'Квадроциклы',               short:'Квадроциклы', tech:true, cover:97},
+  {id:'scoot', name:'Скутеры и мопеды',          short:'Скутеры и мопеды', tech:true, cover:55},
+  {id:'el',    name:'Электросамокаты',           short:'Электросамокаты', tech:true, cover:59},
+  {id:'trail', name:'Прицепы',                   short:'Прицепы', tech:true, cover:84},
+  {id:'oil',   name:'Масла и автохимия',         short:'Масла', icon:'oil'},
+  {id:'gear',  name:'Экипировка и шлемы',        short:'Экипировка', icon:'gear'},
+  {id:'bat',   name:'Аккумуляторы',              short:'Аккумуляторы', icon:'bat'},
+  {id:'tool',  name:'Инструмент',                short:'Инструмент', icon:'tool'}
+];
+const CAT = Object.fromEntries(CATS.map(c=>[c.id,c]));
+
+const RAW = {
+  snow: [
+    ['Восток','Кит-комплект «Снегоход Восток CT Lifan 29 л.с., короткий»',139000,89],
+    ['РМЗ','Кит-комплект «Снегоход РМЗ, короткий»',118000,90],
+    ['Lifan','Кит-комплект «Снегоход Lifan 29 л.с., короткий»',129000,91],
+    ['Восток','Кит-комплект «Снегоход Восток CT Lifan 29 л.с., длинный»',149000,92],
+    ['РМЗ','Кит-комплект «Снегоход РМЗ, длинный»',127000,93],
+    ['Lifan','Кит-комплект «Снегоход Lifan 29 л.с., длинный»',138000,94],
+    ['Бурлак','Кит-комплект Бурлак Беркут Лонг',164000,95],
+    ['Lifan','Снегоход 4Т Lifan длинный',219000,96]
+  ],
+  tow: [
+    ['Бурлак','Мотобуксировщик Пионер',89000,57],
+    ['Бурлак','Мотобуксировщик Бурлак 600 ST',134000,58],
+    ['Бурлак','Мотобуксировщик Бурлак-М2 Таёжник',176000,60],
+    ['Бурлак','Мотобуксировщик Бурлак Пионер (реверс)',99000,98],
+    ['Бурлак','Мотобуксировщик Бурлак 600 LT',142000,99],
+    ['Белка','Мотобуксировщик компактный Белка 9,0 л.с. KP230 PRO',118000,101],
+    ['Лидер','Мотобуксировщик компактный с лыжным модулем Лидер-Дельта-2 CVTL, 8+ л.с., вариатор TAV2-40',156000,102],
+    ['АвтоМото','Сани для мотобуксировщика',24500,100]
+  ],
+  moto: [
+    ['Regulmoto','Мотоцикл Regulmoto ALEN MONSTER 300',259000,1],
+    ['Regulmoto','Мотоцикл Regulmoto Sport-003 Z',219000,2],
+    ['Regulmoto','Мотоцикл Regulmoto Raptor NEW SK 250-5',189000,3],
+    ['Regulmoto','Мотоцикл Regulmoto Discovery',239000,4],
+    ['Regulmoto','Мотоцикл Regulmoto LEGEND 300',249000,5],
+    ['KEWS','Мотоцикл кроссовый KEWS K16 PR300 21/18',268000,6],
+    ['Regulmoto','Мотоцикл Regulmoto SK 200-22',149000,7],
+    ['Regulmoto','Мотоцикл Regulmoto SK250GY-5',172000,8],
+    ['Regulmoto','Мотоцикл Regulmoto T-Leopard 300',279000,9],
+    ['JHL','Мотоцикл JHL ELX300',284000,32],
+    ['JHL','Мотоцикл JHL S004 300',231000,33],
+    ['Racer','Мотоцикл Racer X2',119000,34],
+    ['KAYO','Мотоцикл кроссовый KAYO K2 PRO',289000,35],
+    ['KAYO','Мотоцикл кроссовый KAYO T2 300 ENDURO PR',369000,36],
+    ['KAYO','Мотоцикл кроссовый KAYO T2 250 MX',339000,37],
+    ['KAYO','Мотоцикл кроссовый KAYO K1 250MX',249000,38],
+    ['Regulmoto','Мотоцикл Regulmoto RM 125',129000,39],
+    ['Regulmoto','Мотоцикл Regulmoto Majesty',209000,40],
+    ['Regulmoto','Мотоцикл Regulmoto ATHLETE PRO 300',299000,41],
+    ['Regulmoto','Мотоцикл Regulmoto Crosstrec 300',309000,42],
+    ['Regulmoto','Мотоцикл Regulmoto Norden',329000,43],
+    ['Regulmoto','Мотоцикл Regulmoto ZR PR',269000,44],
+    ['Regulmoto','Мотоцикл Regulmoto Holeshot',254000,45],
+    ['Regulmoto','Мотоцикл Regulmoto MONSTER',229000,46],
+    ['Regulmoto','Мотоцикл Regulmoto Viking',199000,47],
+    ['Regulmoto','Мотоцикл Regulmoto Sport-003 PR PRO',259000,48],
+    ['KAYO','Мотоцикл кроссовый KAYO K4 300 MX',319000,49],
+    ['Regulmoto','Мотоцикл Regulmoto ADV 300 NB',349000,50],
+    ['Regulmoto','Мотоцикл Regulmoto TE (Tour Enduro) PR',289000,51],
+    ['HAMMER','Мотоцикл HAMMER BX 250',159000,61],
+    ['HAMMER','Мотоцикл кроссовый HAMMER Woif 25 300',214000,62],
+    ['ММЗ','Мотоцикл MMZ 065',99000,63],
+    ['Regulmoto','Мотоцикл Regulmoto LANZA 2T',279000,64],
+    ['Regulmoto','Мотоцикл Regulmoto CR-X',239000,65],
+    ['Regulmoto','Мотоцикл Regulmoto TE PRO NB300',339000,66],
+    ['HAMMER','Мотоцикл HAMMER Самурай 125 см³',109000,71]
+  ],
+  pit: [
+    ['KAYO','Питбайк KAYO BASIC TT160 17/14 KRZ',149000,18],
+    ['KAYO','Питбайк KAYO BASIC TT140EM 17/14 KRZ',134000,19],
+    ['JHL','Питбайк JHL LK24 YX140EM',119000,20],
+    ['JHL','Питбайк JHL LK24 YX125EM',109000,21],
+    ['KAYO','Питбайк KAYO BASIC K125EM',114000,22],
+    ['KAYO','Питбайк KAYO EVOLUTION K125EM',121000,23],
+    ['Regulmoto','Питбайк PILOT EA 14/12',89000,24],
+    ['Regulmoto','Питбайк Regulmoto FIVE EA',99000,25],
+    ['Regulmoto','Питбайк Regulmoto SEVEN 125 см³',104000,26],
+    ['Regulmoto','Питбайк Regulmoto SEVEN MEDALIST PRO 17/14',139000,27],
+    ['KAYO','Питбайк KAYO MINI TD125 14/12',97000,72],
+    ['Regulmoto','Питбайк Regulmoto SPITFIRE 17/14 PRO',128000,73],
+    ['Regulmoto','Питбайк Regulmoto FLY 12/10',74000,74],
+    ['Regulmoto','Питбайк Regulmoto PILOT EM 17/14',112000,75],
+    ['Regulmoto','Питбайк Regulmoto ONIX PRO 150',136000,76],
+    ['KAYO','Питбайк KAYO MINI K125EM 14/12',94000,77]
+  ],
+  atv: [
+    ['KAYO','Квадроцикл KAYO AU180 CVT',259000,29],
+    ['KAYO','Квадроцикл KAYO AU150 CVT',229000,30],
+    ['KAYO','Квадроцикл KAYO A200',189000,79],
+    ['KAYO','Квадроцикл KAYO AU200 со спинкой',279000,80],
+    ['KAYO','Квадроцикл KAYO AT 110',119000,81],
+    ['Bizon','Квадроцикл Bizon YK450A 4WD',549000,82],
+    ['QJ Motor','Квадроцикл QJ Motor SFA 1000',1390000,97]
+  ],
+  scoot: [
+    ['Regulmoto','Скутер Regulmoto GRIDO',96000,28],
+    ['Regulmoto','Мопед Regulmoto Alpha (RM-3)',62000,31],
+    ['Regulmoto','Мопед Regulmoto Alpha (RM-5)',67000,52],
+    ['Regulmoto','Мопед Regulmoto Alpha (RM-4)',64000,53],
+    ['Regulmoto','Скутер Regulmoto DIGITA 50',69000,54],
+    ['Regulmoto','Скутер Regulmoto Formyla 125',109000,55],
+    ['Regulmoto','Скутер Regulmoto X-1',89000,56],
+    ['TOKISHI','Скутер TOKISHI TANK-1 170',149000,67],
+    ['TOKISHI','Скутер TOKISHI TANK 2',139000,68],
+    ['TOKISHI','Скутер TOKISHI TANK 3',159000,69],
+    ['MAXI','Скутер MAXI 061',79000,70]
+  ],
+  el: [
+    ['GT Racer','Электросамокат GT RACER MAX T4 PRO',64000,59],
+    ['GT Racer','Электросамокат GT RACER MAX M4 PRO',58000,78]
+  ],
+  trail: [
+    ['АвтоМото','Прицеп 1713-05 без тента',52000,10],
+    ['АвтоМото','Прицеп 1713-05 с тентом',61000,11],
+    ['АвтоМото','Прицеп 3518 с тентом 1220, 1 ось',118000,12],
+    ['АвтоМото','Прицеп 3518 с тентом 1220, 2 оси',149000,13],
+    ['АвтоМото','Прицеп 2513-05 с тентом 920',79000,14],
+    ['АвтоМото','Прицеп лодочный-3 «Гидроцикл» (длина судна 3 м)',58000,15],
+    ['АвтоМото','Прицеп лодочный 25.0 (длина судна 5 м)',89000,16],
+    ['АвтоМото','Прицеп лодочный 14.3 (длина судна 3,8 м)',69000,17],
+    ['АвтоМото','Прицеп 2515-03 с тентом 1220',94000,84],
+    ['АвтоМото','Прицеп 2714-03 с тентом 1220',99000,85],
+    ['АвтоМото','Прицеп 2013-05 без тента',64000,86],
+    ['АвтоМото','Прицеп 2013-05 с тентом',72000,87],
+    ['АвтоМото','Прицеп 2213 с тентом 600',76000,88]
+  ],
+  oil: [
+    ['Motul','Масло моторное Motul 7100 4T 10W-40, 1 л',1490,0,{specs:[['Тип','4T, синтетика'],['Вязкость','10W-40'],['Объём','1 л'],['Для','Мотоциклы, питбайки, квадроциклы']]}],
+    ['Liqui Moly','Масло Liqui Moly Motorbike 4T 10W-40 Street, 1 л',1290,0,{specs:[['Тип','4T, НС-синтетика'],['Вязкость','10W-40'],['Объём','1 л']]}],
+    ['ЛУКОЙЛ','Масло ЛУКОЙЛ Мото 2Т, 1 л',520,0,{specs:[['Тип','2T, минеральное'],['Объём','1 л'],['Для','Мопеды, бензоинструмент, 2T-моторы']]}],
+    ['Motul','Масло для снегоходов Motul Snowpower 2T, 4 л',5990,0,{specs:[['Тип','2T, синтетика'],['Объём','4 л'],['Для','Снегоходы, мотобуксировщики (2T)']]}],
+    ['Lifan','Масло для мотобуксировщиков 4T 5W-30, 1 л',690,0,{specs:[['Тип','4T'],['Вязкость','5W-30'],['Объём','1 л'],['Для','4T-двигатели зимой']]}],
+    ['Liqui Moly','Смазка для цепи Liqui Moly Motorbike Kettenspray, 400 мл',1150,0,{specs:[['Объём','400 мл'],['Для','Цепи мотоциклов и питбайков']]}]
+  ],
+  gear: [
+    ['AiM','Шлем кроссовый AiM JK803S, чёрный матовый',7900,0,{specs:[['Тип','Кроссовый'],['Размеры','XS–XXL']]}],
+    ['AiM','Шлем открытый AiM JK526',4900,0,{specs:[['Тип','Открытый'],['Размеры','S–XL']]}],
+    ['Fox','Очки кроссовые',2400,0,{specs:[['Линза','Прозрачная, антизапотевание']]}],
+    ['Starks','Перчатки мотоциклетные кроссовые',1900,0,{specs:[['Размеры','S–XXL']]}],
+    ['Starks','Мотоботы кроссовые',12900,0,{specs:[['Размеры','39–46']]}],
+    ['Starks','Защита тела (черепаха)',6900,0,{specs:[['Размеры','S–XL'],['Для','Кросс, эндуро, питбайк']]}]
+  ],
+  bat: [
+    ['Delta','Аккумулятор мото 12V 7 А·ч (YTX7L-BS)',3490,0,{specs:[['Напряжение','12 В'],['Ёмкость','7 А·ч'],['Типоразмер','YTX7L-BS']]}],
+    ['Delta','Аккумулятор мото 12V 9 А·ч (YTX9-BS)',3990,0,{specs:[['Напряжение','12 В'],['Ёмкость','9 А·ч'],['Типоразмер','YTX9-BS']]}],
+    ['Tyumen Battery','Аккумулятор автомобильный 60 А·ч, обратная полярность',7490,0,{specs:[['Ёмкость','60 А·ч'],['Пусковой ток','550 А'],['Полярность','Обратная']]}],
+    ['Tyumen Battery','Аккумулятор автомобильный 75 А·ч, прямая полярность',9290,0,{specs:[['Ёмкость','75 А·ч'],['Пусковой ток','680 А'],['Полярность','Прямая']]}]
+  ],
+  tool: [
+    ['Ombra','Набор инструментов 108 предметов',6900,0,{specs:[['Предметов','108'],['Кейс','Пластиковый']]}],
+    ['Орион','Зарядное устройство для АКБ 6/12 В',3200,0,{specs:[['Напряжение','6/12 В'],['Ток','до 10 А']]}],
+    ['Jonnesway','Ключ свечной 16/21 мм',650,0,{specs:[['Размер','16 и 21 мм']]}]
+  ]
+};
+const imgPath = n => `img/p/${String(n).padStart(3,'0')}.jpg`;
+
+let N=0; const P=[];
+for (const [cat, rows] of Object.entries(RAW)) rows.forEach(r=>{
+  N++;
+  P.push({id:'p'+N, cat, brand:r[0], name:r[1], price:r[2], img:r[3]?imgPath(r[3]):'', stock:(N%5===2||N%7===0)?'order':'in', ...(r[4]||{})});
+});
+const SPORT = P.find(p=>p.name.includes('Sport-003 Z'));
+SPORT.stock='in';
+SPORT.specsFull = [
+  ['Основные данные'],['Класс','Эндуро'],['Модель двигателя','CB250D-G'],['Объём двигателя, см³','250'],['Количество цилиндров','1'],['Мощность, л.с.','18,3'],['Тактность','Четырёхтактный'],['Балансировочный вал','Нет'],['Система охлаждения','Воздушная'],
+  ['Трансмиссия и запуск'],['Количество передач','5'],['Тип старта','Электростартер / кикстартер'],['Тип трансмиссии','Механическая'],
+  ['Подвеска и тормоза'],['Передняя подвеска','Перевёрнутая вилка Ø 41 мм'],['Задняя подвеска','Моноамортизатор с прогрессивной характеристикой'],['Передний тормоз','Дисковый'],['Задний тормоз','Дисковый'],
+  ['Колёса и шины'],['Переднее колесо','90/100–21'],['Заднее колесо','120/90–18'],
+  ['Топливо'],['Бензобак, л','8'],['Средний расход, л/100 км','2,4'],['Максимальная скорость, км/ч','110'],
+  ['Масса и габариты'],['Масса, кг','120'],['Максимальная нагрузка, кг','230'],['Колёсная база, мм','1410'],['Высота по сиденью, мм','890'],['Упаковка (Д × Ш × В), мм','1560 × 480 × 810']
+];
+
+function cc(name, lo=50, hi=1100){ const m=name.match(/(\d{2,4})/g); if(!m) return null; for(const x of m){const v=+x; if(v>=lo&&v<=hi) return v;} return null; }
+function wheels(name){ const m=name.match(/(\d{2})\/(\d{2})/); return m?`${m[1]}/${m[2]}`:null; }
+function keySpecs(p){
+  if(p.specs) return p.specs;
+  const n=p.name;
+  switch(p.cat){
+    case 'moto': {
+      const v=cc(n,100,450)||250, cls=/MX|K1|K2|K4|кросс/i.test(n)?'Кросс':/ADV|Tour|TE |Norden|Discovery|Crosstrec|Majesty|Viking/i.test(n)?'Эндуро / туризм':'Эндуро';
+      return [['Класс',cls],['Объём двигателя, см³',String(v)],['Тактность',/2T/i.test(n)?'Двухтактный':'Четырёхтактный'],['Колёса',wheels(n)||'21/18'],['Учёт в ГИБДД','Уточняйте по модели']];
+    }
+    case 'pit': {
+      const w=wheels(n)||'17/14', grow={'12/10':'120–145 см','14/12':'135–160 см','17/14':'150–180 см'}[w]||'по модели';
+      return [['Колёса',w],['Объём двигателя, см³',String(cc(n,100,200)||125)],['Рекомендуемый рост','~ '+grow],['Запуск',/E[MA]|EM|EA/.test(n)?'Электростартер':'Кикстартер'],['Назначение','Спорт, бездорожье (без ПТС)']];
+    }
+    case 'atv': {
+      const v=cc(n,100,1100)||200, kind=v<=125?'Детский':v<=200?'Подростковый':'Взрослый';
+      return [['Объём двигателя, см³',String(v)],['Привод',/4WD|1000|450/i.test(n)?'4×4':'Задний'],['Трансмиссия',/CVT|1000|450/i.test(n)?'Вариатор':'Полуавтомат'],['Для кого',kind]];
+    }
+    case 'snow': {
+      const long=/длинн|Лонг/i.test(n);
+      return [['Тип',/Кит/.test(n)?'Кит-комплект для сборки':'Снегоход'],['Двигатель',/РМЗ/.test(n)?'РМЗ-640, 2T':'Lifan, 29 л.с., 4T'],['База',long?'Длинная':'Короткая'],['Длина гусеницы, мм',long?'3 450':'2 870'],['Назначение','Тайга, рыбалка, охота']];
+    }
+    case 'tow': {
+      if(/Сани/.test(n)) return [['Длина, мм','2 200'],['Грузоподъёмность, кг','250'],['Для','Любых мотобуксировщиков']];
+      const hp=(n.match(/(\d+[,.]?\d*)\s*\+?\s*л\.?с/i)||[])[1];
+      return [['Мощность, л.с.',hp?hp.replace('.',','):(/600|М2/.test(n)?'15':'7')],['Длина гусеницы, мм',/LT|М2|Таёжник/i.test(n)?'1 650':'1 270'],['Реверс',/реверс|М2/i.test(n)?'Есть':'Нет'],['Вариатор',/CVT|вариатор/i.test(n)?'Есть':'Стандартный'],['Транспортировка','В багажнике или на прицепе']];
+    }
+    case 'trail': {
+      const boat=n.match(/длина судна ([\d,]+) м/);
+      if(boat) return [['Тип','Лодочный'],['Длина судна, м','до '+boat[1]],['Оси','1'],['Учёт в ГИБДД','Да']];
+      const code=(n.match(/(\d{2})(\d{2})/)||[]);
+      const tent=(n.match(/тентом\s*(\d{3,4})/)||[])[1];
+      return [['Кузов (Д × Ш), м',code[1]?`${code[1][0]},${code[1][1]} × ${code[2][0]},${code[2][1]}`:'—'],['Тент',/без тента/.test(n)?'Нет':tent?`Есть, высота ${tent} мм`:'Есть'],['Оси',/2 оси/.test(n)?'2':'1'],['Грузоподъёмность, кг',/2 оси/.test(n)?'1 200':'600'],['Учёт в ГИБДД','Да']];
+    }
+    case 'scoot': {
+      const v=cc(n,40,200);
+      return [['Объём двигателя, см³',v?String(v):'110'],['Категория прав',v&&v<=50?'M':'A1 / M — уточняйте'],['Расход, л/100 км','2,2'],['Хранение зимой','Можно оставить в сервисе']];
+    }
+    case 'el': return [['Мощность мотора, Вт','2 × 1 200'],['Запас хода, км','до 60'],['Максимальная скорость, км/ч','до 55']];
+  }
+  return [];
+}
+function brief(p){ return keySpecs(p).slice(0,2).map(x=>x[1]).join(' · '); }
+
+/* ======== УТИЛИТЫ ======== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rub=n=>n.toLocaleString('ru-RU')+' ₽';
+const minPrice=cat=>Math.min(...P.filter(p=>p.cat===cat).map(p=>p.price));
+const countIn=cat=>P.filter(p=>p.cat===cat).length;
+function plural(n,a,b,c){n=Math.abs(n)%100;const m=n%10;if(n>10&&n<20)return c;if(m>1&&m<5)return b;if(m===1)return a;return c;}
+function picHtml(p,eager){
+  if(p.img) return `<img src="${p.img}" alt="${esc(p.name)}" loading="${eager?'eager':'lazy'}" width="720" height="540">`;
+  return `<div class="noimg"><svg viewBox="0 0 96 60" aria-hidden="true"><use href="#i-${CAT[p.cat].icon||'moto'}"/></svg></div>`;
+}
+function stockHtml(p,long){
+  if(p.stock==='in') return `<span class="stock in">${long&&CAT[p.cat].tech?'В наличии в мотосалоне на Коммунальной, 6':'В наличии'}</span>`;
+  return `<span class="stock order">${long?'Под заказ: 20–30 дней, если есть у поставщика':'Под заказ, 20–30 дней'}</span>`;
+}
+function toast(t){const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2200);}
+
+let cart={};
+try{cart=JSON.parse(localStorage.getItem('am_cart')||'{}')||{};}catch(e){cart={};}
+function saveCart(){try{localStorage.setItem('am_cart',JSON.stringify(cart));}catch(e){} updCnt();}
+function updCnt(){const n=Object.values(cart).reduce((a,b)=>a+b,0);for(const id of ['cartCnt','mCnt']){const el=document.getElementById(id);el.textContent=n;el.hidden=!n;}}
+function addCart(id,q=1){cart[id]=(cart[id]||0)+q;saveCart();toast('Добавлено в корзину');}
+
+function openState(){
+  try{
+    const parts=new Intl.DateTimeFormat('ru-RU',{timeZone:'Asia/Irkutsk',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date());
+    const wd=parts.find(x=>x.type==='weekday').value, h=+parts.find(x=>x.type==='hour').value, m=+parts.find(x=>x.type==='minute').value;
+    const close=/сб|вс/i.test(wd)?18:19, t=h+m/60, el=$('#openNow');
+    if(t>=10&&t<close){el.innerHTML=`<i></i>Открыто, сегодня до ${close}:00`;el.classList.remove('closed');}
+    else{el.innerHTML=`<i></i>Закрыто, откроемся в 10:00`;el.classList.add('closed');}
+  }catch(e){}
+}
+
+const ALIAS={'каяо':'kayo','кайо':'kayo','регульмото':'regulmoto','регул':'regulmoto','токиши':'tokishi','хаммер':'hammer','бизон':'bizon','лифан':'lifan','мотюль':'motul','мотул':'motul','квадрик':'квадроцикл','буксировщик':'мотобуксировщик','мотособака':'мотобуксировщик','собака':'мотобуксировщик','акб':'аккумулятор'};
+const norm=s=>s.toLowerCase().replace(/ё/g,'е');
+function search(q){
+  const words=norm(q).split(/\s+/).filter(Boolean).map(w=>{for(const k in ALIAS) if(w.startsWith(k)) return norm(ALIAS[k]); return w;});
+  if(!words.length) return [];
+  return P.filter(p=>{const hay=norm(p.name+' '+p.brand+' '+CAT[p.cat].name); return words.every(w=>hay.includes(w));});
+}
+
+/* ======== ШАБЛОНЫ ======== */
+function cardHtml(p){
+  const tech=CAT[p.cat].tech;
+  return `<a class="card" href="#${p.id}">
+    <div class="pic">${picHtml(p)}<span class="badge ${p.stock}">${p.stock==='in'?'В наличии':'Под заказ'}</span></div>
+    <div class="body"><span class="nm">${esc(p.name)}</span><span class="kp">${esc(brief(p))}</span>
+      <div class="bot"><span class="pr num">${rub(p.price)}</span>${tech&&p.price>=50000?'<span class="cr">Кредит в салоне</span>':''}</div>
+      ${stockHtml(p)}</div></a>`;
+}
+
+let slideIdx=0, slideTimer=null;
+function slidesHtml(){
+  const S=[
+    {img:'img/b/snow.jpg', alt:'Снегоход в мотосалоне АвтоМото', t:'<em>Снегоходы</em><br>к сезону', from:`от <em>${rub(minPrice('snow'))}</em>`, sub:'Кит-комплекты Восток, РМЗ, Lifan и Бурлак. Можно посмотреть вживую на Коммунальной, 6.', href:'#cat-snow'},
+    {img:'img/b/atv.jpg', alt:'Квадроцикл в мотосалоне АвтоМото', t:'<em>Квадроциклы</em><br>для тайги и дачи', from:`от <em>${rub(minPrice('atv'))}</em>`, sub:'Детские, подростковые и взрослые 4×4. Кредит в 10+ банках оформим в салоне.', href:'#cat-atv'},
+    {img:'img/b/tow.jpg', alt:'Мотобуксировщики в мотосалоне АвтоМото', t:'<em>Мотобуксировщики</em><br>и сани', from:`от <em>${rub(minPrice('tow'))}</em>`, sub:'Бурлак, Белка, Лидер. Помещаются в багажник или на прицеп.', href:'#cat-tow'}
+  ];
+  return `<section class="slider" aria-label="Предложения" aria-roledescription="carousel">
+    <div class="slides">${S.map((s,i)=>`<div class="slide${i===0?' on':''}" aria-hidden="${i!==0}">
+      <img src="${s.img}" alt="${s.alt}" ${i===0?'':'loading="lazy"'} width="1600" height="700">
+      <div class="cap"><div class="wrap"><div class="cap-in">
+        ${i===0?'<h1 class="tt">':'<p class="tt h1">'}${s.t}${i===0?'</h1>':'</p>'}
+        <span class="from num">${s.from}</span>
+        <p class="sub">${s.sub}</p>
+        <a class="btn red" href="${s.href}">Смотреть модели</a>
+      </div></div></div></div>`).join('')}</div>
+    <div class="sl-dots">${S.map((s,i)=>`<button type="button" class="${i===0?'on':''}" data-go="${i}" aria-label="Слайд ${i+1}"></button>`).join('')}</div>
+    <div class="sl-ctl"><button type="button" id="slPrev" aria-label="Предыдущий">‹</button><button type="button" id="slNext" aria-label="Следующий">›</button></div>
+  </section>`;
+}
+function bindSlider(){
+  const sl=[...document.querySelectorAll('.slide')], dots=[...document.querySelectorAll('.sl-dots button')];
+  if(!sl.length) return;
+  const show=i=>{slideIdx=(i+sl.length)%sl.length;sl.forEach((s,k)=>{s.classList.toggle('on',k===slideIdx);s.setAttribute('aria-hidden',k!==slideIdx);});dots.forEach((d,k)=>d.classList.toggle('on',k===slideIdx));};
+  slideIdx=0;
+  dots.forEach(d=>d.onclick=()=>{show(+d.dataset.go);restart();});
+  $('#slPrev').onclick=()=>{show(slideIdx-1);restart();};
+  $('#slNext').onclick=()=>{show(slideIdx+1);restart();};
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function restart(){clearInterval(slideTimer);if(!reduce) slideTimer=setInterval(()=>show(slideIdx+1),6500);}
+  const root=$('.slider'); root.onmouseenter=()=>clearInterval(slideTimer); root.onmouseleave=restart;
+  restart();
+}
+
+function home(){
+  const season=P.filter(p=>(p.cat==='snow'||p.cat==='tow')&&p.stock==='in');
+  const moto=P.filter(p=>['moto','pit'].includes(p.cat)&&p.stock==='in').slice(0,10);
+  return `${slidesHtml()}
+  <div class="trust"><div class="wrap">
+    <div class="it"><b>${RATING.value} <em>★</em></b><span>в 2ГИС · ${RATING.votes} оценок</span></div>
+    <div class="it"><b><em>6</em> точек</b><span>в Братске</span></div>
+    <div class="it"><b><em>10+</em> банков</b><span>кредит и рассрочка в салоне</span></div>
+    <div class="it"><b>Свой <em>сервис</em></b><span>гарантия производителя</span></div>
+  </div></div>
+
+  <section class="blk"><div class="wrap">
+    <div class="shead"><h2 class="tt"><em>В наличии</em> к зиме</h2><a class="more" href="#cat-snow">Все снегоходы →</a></div>
+    <div class="rail">${season.map(cardHtml).join('')}</div>
+  </div></section>
+
+  <section class="blk" style="padding-top:0"><div class="wrap">
+    <div class="shead"><h2 class="tt"><em>Подбери</em> технику за 2 минуты</h2></div>
+    <div class="quiz" id="quiz"></div>
+  </div></section>
+
+  <section class="blk" style="padding-top:0"><div class="wrap">
+    <div class="shead"><h2 class="tt"><em>Мотоциклы</em> и питбайки</h2><a class="more" href="#cat-moto">Весь каталог →</a></div>
+    <div class="rail">${moto.map(cardHtml).join('')}</div>
+  </div></section>
+
+  <section class="blk about" style="background:var(--soft)">
+    <svg class="deco" viewBox="0 0 96 60" aria-hidden="true"><use href="#i-atv"/></svg>
+    <div class="wrap">
+      <div class="txt">
+        <h2 class="tt"><em>Мотосалон</em><br>в Братске</h2>
+        <p class="muted" style="font-weight:500">Техника стоит в зале на Коммунальной, 6: её можно посмотреть, сесть и задать вопросы до покупки. Нужной модели нет — привезём от поставщика за 20–30 дней.</p>
+        <ul>
+          <li>Гарантия производителя на всю технику</li>
+          <li>Свой сервис: ТО и гарантийный ремонт</li>
+          <li>Кредит и рассрочка в 10+ банках — оформляем в салоне</li>
+          <li>Масла, аккумуляторы и инструмент — в 6 точках города</li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn black" href="#stores">Адреса магазинов</a><a class="btn line js-2gis" href="#" target="_blank" rel="noopener">Отзывы в 2ГИС</a></div>
+      </div>
+      <div class="photo"><img src="img/b/store.jpg" alt="Мотосалон АвтоМото на Коммунальной, 6" loading="lazy" width="800" height="600"><span class="stamp">Коммунальная, 6<br>павильон 25</span></div>
+    </div>
+  </section>
+
+  <section class="blk"><div class="wrap">
+    <div class="shead"><h2 class="tt"><em>Каталог</em></h2><a class="more" href="#catalog">Все товары →</a></div>
+    <div class="qopts" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+      ${CATS.map(c=>`<a class="qopt" href="#cat-${c.id}" style="text-decoration:none"><div class="pic">${c.cover?`<img src="${imgPath(c.cover)}" alt="" loading="lazy" width="720" height="540">`:`<div class="noimg"><svg viewBox="0 0 96 60"><use href="#i-${c.icon}"/></svg></div>`}</div><b>${c.short}<br><small class="muted num" style="font-style:normal;font-weight:600;text-transform:none">${countIn(c.id)} ${plural(countIn(c.id),'товар','товара','товаров')} · от ${rub(minPrice(c.id))}</small></b></a>`).join('')}
+    </div>
+  </div></section>
+
+  <section class="blk" style="padding-top:0"><div class="wrap duo">
+    <div class="panel black">
+      <h2 class="tt"><em>Кредит</em> в салоне</h2>
+      <ol class="steps">
+        <li><span>Выберите технику и забронируйте её на сайте или в MAX.</span></li>
+        <li><span>Приезжайте с паспортом на Коммунальную, 6. Отправим заявку сразу в несколько банков из 10+.</span></li>
+        <li><span>После одобрения подписываете договор с банком и забираете технику.</span></li>
+      </ol>
+      <p class="lead" style="font-size:13px">Онлайн кредит не оформляем. Ставку и платёж определяет банк.</p>
+      <div><a class="btn wline" href="#credit">Подробнее</a></div>
+    </div>
+    <div class="panel red">
+      <h2 class="tt">Нет нужной модели?</h2>
+      <p class="lead">Напишите название или пришлите ссылку. Проверим у поставщиков и привезём за 20–30 дней. Цену и срок подтвердим до оплаты.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn black js-max" href="#" target="_blank" rel="noopener">Написать в MAX</a><a class="btn wline js-avito" href="#" target="_blank" rel="noopener">Спросить на Авито</a></div>
+      <p style="font-weight:700">или позвоните: <span class="num">${CONTACTS.phone}</span></p>
+    </div>
+  </div></section>
+
+  <section class="blk" style="padding-top:0"><div class="wrap">
+    <div class="shead"><h2 class="tt"><em>Магазины</em> в Братске</h2><a class="more" href="#stores">Все адреса →</a></div>
+    ${storesHtml(3)}
+  </div></section>
+
+  <section class="blk" style="padding-top:0"><div class="wrap">
+    <div class="shead"><h2 class="tt"><em>Вопросы</em> перед покупкой</h2></div>
+    ${faqHtml()}
+  </div></section>`;
+}
+
+function storesHtml(limit){
+  return `<div class="stores">${STORES.slice(0,limit||STORES.length).map(s=>`
+    <div class="store${s.main?' main':''}"><span class="lbl">${s.main?'Главный · техника':'Магазин'}</span><h3>${esc(s.name)}</h3>
+    <span>${esc(s.addr)}</span><span class="s">${esc(s.what)}</span><span class="s">${esc(s.hours)}</span></div>`).join('')}</div>`;
+}
+function faqHtml(){
+  const qa=[
+    ['Нужны ли права и учёт в ГИБДД?','Зависит от модели. Многие питбайки и кроссовые мотоциклы продаются без ПТС для спорта и не регистрируются, ездить на них по дорогам общего пользования нельзя. Дорожные мотоциклы, скутеры больше 50 см³ и прицепы ставятся на учёт. По каждой модели подскажем точно.'],
+    ['Можно ли оформить кредит онлайн?','Нет. Кредит и рассрочку оформляем только в мотосалоне на Коммунальной, 6. Заявку отправляем в несколько банков из 10+, с которыми работаем.'],
+    ['Сколько ждать технику под заказ?','20–30 дней, если модель есть у поставщика. Срок и цену подтвердим до оплаты.'],
+    ['Доставляете?','По Братску и району доставляем сами, стоимость считается отдельно. По Иркутской области отправляем через транспортную компанию.'],
+    ['Что с гарантией и обслуживанием?','На всю технику действует гарантия производителя. Гарантийный ремонт и ТО делаем в своём сервисе.'],
+    ['Где купить масло или аккумулятор?','В любой из 6 наших точек в Братске. Наличие в конкретной точке уточняйте по телефону или в MAX.']
+  ];
+  return `<div class="faq">${qa.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div>`;
+}
+
+/* ======== КВИЗ ======== */
+const Q={step:0,type:null,purpose:null,budget:null};
+const PURPOSE={
+  pit:[['kid','Ребёнку 7–10 лет','колёса 12/10, 14/12'],['teen','Подростку 10–15 лет','колёса 14/12'],['adult','Подростку 15+ и взрослому','колёса 17/14']],
+  atv:[['kid','Ребёнку','до 125 см³'],['teen','Подростку','150–200 см³'],['adult','Взрослому, для тайги','от 200 см³, 4×4']],
+  moto:[['cross','Кросс','для трассы и бездорожья'],['enduro','Эндуро и туризм','дальние поездки'],['any','Не знаю','поможем выбрать']],
+  snow:[['short','Короткая база','манёвренный, легче'],['long','Длинная база','по глубокому снегу'],['any','Не знаю','поможем выбрать']],
+  tow:[['light','Компактный','влезает в багажник'],['heavy','Мощный','для груза и наста'],['any','Не знаю','поможем выбрать']]
+};
+const BUDGET=[['b1','До 100 000 ₽',0,100000],['b2','100–200 тыс. ₽',100000,200000],['b3','200–300 тыс. ₽',200000,300000],['b4','Больше 300 тыс. ₽',300000,1e9],['b0','Не важно',0,1e9]];
+function quizMatch(){
+  let l=P.filter(p=>p.cat===Q.type);
+  const pu=Q.purpose;
+  if(Q.type==='pit'&&pu){const w={kid:['12/10','14/12'],teen:['14/12'],adult:['17/14']}[pu];l=l.filter(p=>w.includes(keySpecs(p)[0][1]));}
+  if(Q.type==='atv'&&pu){l=l.filter(p=>{const v=+keySpecs(p)[0][1];return pu==='kid'?v<=125:pu==='teen'?v>125&&v<=200:v>200;});}
+  if(Q.type==='moto'&&pu&&pu!=='any'){l=l.filter(p=>pu==='cross'?keySpecs(p)[0][1]==='Кросс':keySpecs(p)[0][1]!=='Кросс');}
+  if(Q.type==='snow'&&pu&&pu!=='any'){l=l.filter(p=>(keySpecs(p)[2][1]==='Длинная')===(pu==='long'));}
+  if(Q.type==='tow'&&pu&&pu!=='any'){l=l.filter(p=>!/Сани/.test(p.name)&&(pu==='light'?/компакт|Пионер/i.test(p.name):!/компакт|Пионер/i.test(p.name)));}
+  const b=BUDGET.find(x=>x[0]===Q.budget); if(b) l=l.filter(p=>p.price>=b[2]&&p.price<b[3]);
+  return l.sort((a,b)=>(a.stock==='in'?0:1)-(b.stock==='in'?0:1)||a.price-b.price);
+}
+function renderQuiz(){
+  const el=$('#quiz'); if(!el) return;
+  const steps=['Тип техники','Для чего','Бюджет','Подборка'];
+  const head=`<div class="qsteps">${steps.map((s,i)=>`<div class="${i===Q.step?'on':i<Q.step?'done':''}">Шаг ${i+1}<span class="hide-s">: ${s}</span></div>`).join('')}</div>`;
+  let body='';
+  if(Q.step===0){
+    body=`<h3 class="tt qtitle">Какая техника интересует?</h3><p class="qhint">Выберите, это бесплатно и ни к чему не обязывает.</p>
+    <div class="qopts">${CATS.filter(c=>c.tech).map(c=>`<button class="qopt" type="button" data-type="${c.id}"><div class="pic"><img src="${imgPath(c.cover)}" alt="" loading="lazy" width="720" height="540"></div><b>${c.short}</b></button>`).join('')}</div>`;
+  } else if(Q.step===1){
+    const opts=PURPOSE[Q.type]||[['any','Подберите вариант','расскажем в MAX'],['city','Для города','каждый день'],['dacha','Для дачи и хозяйства','груз и бездорожье']];
+    body=`<h3 class="tt qtitle">Для чего нужна техника?</h3><p class="qhint">${CAT[Q.type].name}</p>
+    <div class="qopts">${opts.map(o=>`<button class="qopt txt" type="button" data-purpose="${o[0]}"><b>${o[1]}</b><small>${o[2]}</small></button>`).join('')}</div><button class="qback" type="button" data-back>← Назад</button>`;
+  } else if(Q.step===2){
+    body=`<h3 class="tt qtitle">Какой бюджет?</h3><p class="qhint">Кредит и рассрочку можно оформить в салоне.</p>
+    <div class="qopts">${BUDGET.map(o=>`<button class="qopt txt" type="button" data-budget="${o[0]}"><b>${o[1]}</b></button>`).join('')}</div><button class="qback" type="button" data-back>← Назад</button>`;
+  } else {
+    const res=quizMatch();
+    body=`<div class="qres"><div>
+      <h3 class="tt qtitle">${res.length?`Подходит ${res.length} ${plural(res.length,'модель','модели','моделей')}`:'Точных совпадений нет'}</h3>
+      <p class="qhint">${res.length?'Вот лучшие варианты. Оставьте телефон — менеджер пришлёт подборку с фото и ценами.':'Оставьте телефон — подберём близкие модели или привезём под заказ за 20–30 дней.'}</p>
+      ${res.length?`<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">${res.slice(0,4).map(cardHtml).join('')}</div>`:''}
+      <button class="qback" type="button" data-restart>Пройти заново</button></div>
+      <form class="formcard" id="quizForm" novalidate>
+        <h3 class="tt" style="font-size:18px">Получить подборку</h3>
+        <div class="field"><label for="zName">Имя</label><input class="in" id="zName" autocomplete="given-name"></div>
+        <div class="field"><label for="zPhone">Телефон</label><input class="in num" id="zPhone" inputmode="tel" autocomplete="tel" placeholder="+7 9__ ___-__-__"></div>
+        <div class="field"><span class="fl">Куда прислать</span><div class="radios"><label><input type="radio" name="zVia" value="MAX" checked> MAX</label><label><input type="radio" name="zVia" value="Авито"> Авито</label><label><input type="radio" name="zVia" value="Звонок"> Звонок</label></div></div>
+        <label class="consent"><input type="checkbox" id="zOk"> <span>Согласен на обработку персональных данных по <a href="#privacy">политике</a></span></label>
+        <span class="err" id="zErr" hidden></span>
+        <button class="btn red" type="submit">Получить подборку</button>
+      </form></div>`;
+  }
+  el.innerHTML=head+body;
+  el.querySelectorAll('[data-type]').forEach(b=>b.onclick=()=>{Q.type=b.dataset.type;Q.purpose=null;Q.step=1;renderQuiz();});
+  el.querySelectorAll('[data-purpose]').forEach(b=>b.onclick=()=>{Q.purpose=b.dataset.purpose;Q.step=2;renderQuiz();});
+  el.querySelectorAll('[data-budget]').forEach(b=>b.onclick=()=>{Q.budget=b.dataset.budget;Q.step=3;renderQuiz();});
+  el.querySelector('[data-back]')?.addEventListener('click',()=>{Q.step--;renderQuiz();});
+  el.querySelector('[data-restart]')?.addEventListener('click',()=>{Q.step=0;Q.type=Q.purpose=Q.budget=null;renderQuiz();});
+  $('#quizForm')?.addEventListener('submit',e=>{e.preventDefault();
+    const err=checkForm('#zName','#zPhone','#zOk'),z=$('#zErr'); if(err){z.textContent=err;z.hidden=false;return;}
+    $('#quizForm').outerHTML=`<div class="ok-box" role="status"><h3>Спасибо!</h3><p>Менеджер пришлёт подборку в течение 30 минут в рабочее время (пн–пт 10–19, сб–вс 10–18).</p><p class="muted" style="font-size:12.5px">Прототип: заявка никуда не отправлена.</p></div>`;});
+}
+
+/* ======== КАТАЛОГ ======== */
+let F={cat:'all',brands:[],inStock:false,min:'',max:'',sort:'stock',q:''};
+function catalog(){
+  let list=F.q?search(F.q):P.slice();
+  if(F.cat!=='all') list=list.filter(p=>p.cat===F.cat);
+  const brandsAll=[...new Set(list.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,'ru'));
+  if(F.brands.length) list=list.filter(p=>F.brands.includes(p.brand));
+  if(F.inStock) list=list.filter(p=>p.stock==='in');
+  if(F.min) list=list.filter(p=>p.price>=+F.min);
+  if(F.max) list=list.filter(p=>p.price<=+F.max);
+  const s={stock:(a,b)=>(a.stock===b.stock?0:a.stock==='in'?-1:1)||a.price-b.price,asc:(a,b)=>a.price-b.price,desc:(a,b)=>b.price-a.price}[F.sort];
+  list.sort(s);
+  const title=F.q?`Поиск: «${esc(F.q)}»`:F.cat==='all'?'<em>Каталог</em>':`<em>${esc(CAT[F.cat].name.split(' ')[0])}</em> ${esc(CAT[F.cat].name.split(' ').slice(1).join(' '))}`;
+  return `<div class="wrap">
+    <div class="crumbs"><a href="#home">Главная</a><span>›</span>${F.cat==='all'&&!F.q?'<span>Каталог</span>':`<a href="#catalog">Каталог</a><span>›</span><span>${F.q?'Поиск':CAT[F.cat].short}</span>`}</div>
+    <div class="shead" style="margin-bottom:14px"><h1 class="tt" style="font-size:clamp(26px,3.8vw,42px)">${title}</h1><span class="muted num" style="font-weight:600">${list.length} ${plural(list.length,'товар','товара','товаров')}</span></div>
+    <div class="chips" style="margin-bottom:20px">
+      <a class="chip${F.cat==='all'?' on':''}" href="#catalog">Все</a>
+      ${CATS.map(c=>`<a class="chip${F.cat===c.id?' on':''}" href="#cat-${c.id}">${c.short}</a>`).join('')}
+    </div>
+    <div class="cat-layout">
+      <aside class="filters" id="filters" aria-label="Фильтры">
+        <div class="fgroup"><h3>Наличие</h3><label class="ck"><input type="checkbox" id="fStock" ${F.inStock?'checked':''}> Только в наличии</label></div>
+        <div class="fgroup"><h3>Цена, ₽</h3><div class="prow"><input class="in num" id="fMin" inputmode="numeric" placeholder="от" value="${F.min}" aria-label="Цена от"><input class="in num" id="fMax" inputmode="numeric" placeholder="до" value="${F.max}" aria-label="Цена до"></div></div>
+        ${brandsAll.length>1?`<div class="fgroup"><h3>Бренд</h3>${brandsAll.map(b=>`<label class="ck"><input type="checkbox" class="fBrand" value="${esc(b)}" ${F.brands.includes(b)?'checked':''}> ${esc(b)}</label>`).join('')}</div>`:''}
+        <button class="btn line sm" id="fReset" type="button">Сбросить</button>
+        <button class="btn red sm fbtn" id="fClose" type="button">Показать ${list.length}</button>
+      </aside>
+      <div>
+        <div class="toolbar">
+          <button class="btn line sm fbtn" id="fOpen" type="button">Фильтры${(F.brands.length||F.inStock||F.min||F.max)?' •':''}</button>
+          <label class="muted" style="font-size:13px;font-weight:600;display:flex;gap:8px;align-items:center">Сортировка
+            <select class="in" id="fSort" style="min-height:40px;padding:6px 10px;width:auto">
+              <option value="stock" ${F.sort==='stock'?'selected':''}>Сначала в наличии</option>
+              <option value="asc" ${F.sort==='asc'?'selected':''}>Дешевле</option>
+              <option value="desc" ${F.sort==='desc'?'selected':''}>Дороже</option>
+            </select></label>
+        </div>
+        ${list.length?`<div class="grid">${list.map(cardHtml).join('')}</div>`:
+          `<div class="empty"><h3 class="tt">Ничего не нашли</h3><p class="muted">Проверьте написание или сбросьте фильтры. Можем привезти модель под заказ за 20–30 дней.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><button class="btn line sm" id="fReset2" type="button">Сбросить фильтры</button><a class="btn red sm js-max" href="#" target="_blank" rel="noopener">Спросить в MAX</a></div></div>`}
+      </div>
+    </div>
+  </div>`;
+}
+function bindCatalog(){
+  const rer=()=>render(true);
+  $('#fStock')?.addEventListener('change',e=>{F.inStock=e.target.checked;rer();});
+  for(const id of ['fMin','fMax']) $('#'+id)?.addEventListener('change',e=>{F[id==='fMin'?'min':'max']=e.target.value.replace(/\D/g,'');rer();});
+  document.querySelectorAll('.fBrand').forEach(el=>el.addEventListener('change',()=>{F.brands=[...document.querySelectorAll('.fBrand:checked')].map(x=>x.value);rer();}));
+  const reset=()=>{F.brands=[];F.inStock=false;F.min='';F.max='';rer();};
+  $('#fReset')?.addEventListener('click',reset); $('#fReset2')?.addEventListener('click',()=>{F.q='';reset();});
+  $('#fSort')?.addEventListener('change',e=>{F.sort=e.target.value;rer();});
+  const fl=$('#filters');
+  $('#fOpen')?.addEventListener('click',()=>{fl.classList.add('open');const b=document.createElement('div');b.className='backdrop';b.id='bd';b.onclick=()=>{fl.classList.remove('open');b.remove();};document.body.appendChild(b);});
+  $('#fClose')?.addEventListener('click',()=>{fl.classList.remove('open');$('#bd')?.remove();});
+}
+
+/* ======== ТОВАР ======== */
+function product(p){
+  const c=CAT[p.cat], tech=!!c.tech;
+  const related=P.filter(x=>x.cat===p.cat&&x.id!==p.id).sort((a,b)=>Math.abs(a.price-p.price)-Math.abs(b.price-p.price)).slice(0,4);
+  const extras=['moto','pit','atv'].includes(p.cat)?P.filter(x=>x.cat==='gear').slice(0,4):['snow','tow'].includes(p.cat)?P.filter(x=>x.cat==='oil').slice(3,5).concat(P.filter(x=>/Сани/.test(x.name))):[];
+  const specRows=(p.specsFull||keySpecs(p)).map(r=>r.length===1?`<tr class="grp"><th colspan="2">${r[0]}</th></tr>`:`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('');
+  return `<div class="wrap">
+    <div class="crumbs"><a href="#home">Главная</a><span>›</span><a href="#catalog">Каталог</a><span>›</span><a href="#cat-${c.id}">${c.short}</a></div>
+    <div class="pgrid">
+      <div class="pgal"><div class="pic">${picHtml(p,true)}<span class="badge ${p.stock}">${p.stock==='in'?'В наличии':'Под заказ'}</span></div></div>
+      <div class="pinfo">
+        <h1 class="tt">${esc(p.name)}</h1>
+        <div class="pmeta"><span>Бренд: <b style="color:var(--ink)">${esc(p.brand)}</b></span><span>Код 1С: АМ-${String(p.id.slice(1)).padStart(5,'0')}</span></div>
+        <div class="pprice num">${rub(p.price)}</div>
+        <div class="statusbox">${stockHtml(p,true)}${p.stock==='order'?'<span class="muted">Срок и цену подтвердим до оплаты.</span>':tech?'<span class="muted">Можно приехать и посмотреть. Бронь держим 2 дня.</span>':'<span class="muted">Наличие в других точках уточняйте по телефону.</span>'}</div>
+        ${tech?`<div class="actions">
+          <button class="btn red wide" id="bookBtn" type="button">${p.stock==='in'?'Забронировать':'Заказать'}</button>
+          <a class="btn black js-max" href="#" target="_blank" rel="noopener">Написать в MAX</a>
+          <a class="btn line js-avito" href="#" target="_blank" rel="noopener">На Авито</a>
+        </div>`:`<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <div class="qty"><button type="button" id="qm" aria-label="Меньше">−</button><input id="qv" class="num" value="1" inputmode="numeric" aria-label="Количество"><button type="button" id="qp" aria-label="Больше">+</button></div>
+          <button class="btn red" id="toCart" type="button" style="flex:1">В корзину</button></div>`}
+        <div class="phone-line"><span class="muted" style="font-weight:600">Позвонить:</span><b class="num">${CONTACTS.phone}</b><button class="link" type="button" id="copyPh">скопировать</button></div>
+        <div id="bookSlot"></div>
+        <ul class="facts">
+          ${tech?`<li><span class="ico">₽</span><span><b>Кредит и рассрочка</b> — оформляем в мотосалоне, 10+ банков. <a href="#credit">Как это работает</a></span></li>`:''}
+          <li><span class="ico">✓</span><span><b>${tech?'Гарантия производителя':'Оригинальный товар'}</b>${tech?' и свой сервис: ТО, гарантийный ремонт.':' от официальных поставщиков.'}</span></li>
+          <li><span class="ico">→</span><span><b>Получение:</b> самовывоз ${tech?'из мотосалона':'из любой из 6 точек'}; доставка по Братску и району за отдельную плату; по области — транспортной компанией.</span></li>
+        </ul>
+      </div>
+    </div>
+    <section class="blk" style="padding-top:8px"><div class="duo" style="align-items:start">
+      <div><h2 class="tt" style="font-size:24px;margin-bottom:6px"><em>Характеристики</em></h2>
+        ${p.specsFull?'':'<p class="muted" style="font-size:13px">Пример. В рабочей версии характеристики подтянутся из 1С.</p>'}
+        <table class="specs"><tbody>${specRows}</tbody></table></div>
+      <div class="panel soft"><h3 class="tt" style="font-size:20px">Спросите перед покупкой</h3><p class="muted">Подойдёт ли по росту и весу, нужен ли учёт в ГИБДД, что входит в предпродажную подготовку, сколько стоит первое ТО.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn red sm js-max" href="#" target="_blank" rel="noopener">Спросить в MAX</a><a class="btn line sm js-avito" href="#" target="_blank" rel="noopener">На Авито</a></div></div>
+    </div></section>
+    ${extras.length?`<section class="blk" style="padding-top:0"><div class="shead"><h2 class="tt"><em>Пригодится</em> вместе</h2></div><div class="grid">${extras.map(cardHtml).join('')}</div></section>`:''}
+    <section class="blk" style="padding-top:0"><div class="shead"><h2 class="tt"><em>Похожие</em> модели</h2><a class="more" href="#cat-${c.id}">Все →</a></div><div class="grid">${related.map(cardHtml).join('')}</div></section>
+  </div>`;
+}
+function bookForm(p){
+  return `<form class="formcard" id="bookForm" novalidate>
+    <h3 class="tt" style="font-size:17px">${p.stock==='in'?'Бронь':'Заказ'}: ${esc(p.name)}</h3>
+    <div class="field"><label for="bName">Имя</label><input class="in" id="bName" autocomplete="given-name"></div>
+    <div class="field"><label for="bPhone">Телефон</label><input class="in num" id="bPhone" inputmode="tel" autocomplete="tel" placeholder="+7 9__ ___-__-__"></div>
+    <div class="field"><span class="fl">Как ответить</span><div class="radios"><label><input type="radio" name="bVia" value="MAX" checked> MAX</label><label><input type="radio" name="bVia" value="Авито"> Авито</label><label><input type="radio" name="bVia" value="Звонок"> Звонок</label></div></div>
+    <label class="consent"><input type="checkbox" id="bOk"> <span>Согласен на обработку персональных данных по <a href="#privacy">политике</a></span></label>
+    <span class="err" id="bErr" hidden></span>
+    <button class="btn red" type="submit">Отправить заявку</button>
+  </form>`;
+}
+function bindProduct(p){
+  $('#copyPh')?.addEventListener('click',()=>{try{navigator.clipboard.writeText(CONTACTS.phone).then(()=>toast('Номер скопирован'),()=>toast(CONTACTS.phone));}catch(e){toast(CONTACTS.phone);}});
+  $('#bookBtn')?.addEventListener('click',()=>{const s=$('#bookSlot');if(s.innerHTML){s.innerHTML='';return;}s.innerHTML=bookForm(p);$('#bName').focus();
+    $('#bookForm').addEventListener('submit',e=>{e.preventDefault();
+      const err=checkForm('#bName','#bPhone','#bOk'),el=$('#bErr'); if(err){el.textContent=err;el.hidden=false;return;}
+      s.innerHTML=`<div class="ok-box" role="status"><h3>Заявка у нас</h3><p>Менеджер подтвердит ${p.stock==='in'?'бронь':'срок и цену'} в течение 30 минут в рабочее время (пн–пт 10–19, сб–вс 10–18). Если срочно — позвоните: <b class="num">${CONTACTS.phone}</b>.</p><p class="muted" style="font-size:12.5px">Прототип: заявка никуда не отправлена.</p></div>`;});
+  });
+  const qv=$('#qv');
+  $('#qm')?.addEventListener('click',()=>{qv.value=Math.max(1,(+qv.value||1)-1);});
+  $('#qp')?.addEventListener('click',()=>{qv.value=Math.min(99,(+qv.value||1)+1);});
+  $('#toCart')?.addEventListener('click',()=>addCart(p.id,Math.max(1,+qv.value||1)));
+}
+function checkForm(nameSel,phoneSel,okSel){
+  const name=$(nameSel).value.trim(), ph=$(phoneSel).value.replace(/\D/g,'');
+  if(!name) return 'Укажите имя.';
+  if(ph.length<10||ph.length>11) return 'Проверьте номер телефона: в нём должно быть 10–11 цифр.';
+  if(!$(okSel).checked) return 'Нужно согласие на обработку персональных данных.';
+  return '';
+}
+
+/* ======== КОРЗИНА ======== */
+function cartPage(){
+  const items=Object.entries(cart).map(([id,q])=>({p:P.find(x=>x.id===id),q})).filter(x=>x.p);
+  const total=items.reduce((s,x)=>s+x.p.price*x.q,0);
+  if(!items.length) return `<div class="wrap"><div class="crumbs"><a href="#home">Главная</a><span>›</span><span>Корзина</span></div>
+    <div class="empty" style="margin-block:12px 56px"><h2 class="tt">Корзина пуста</h2><p class="muted">Масла, экипировку, аккумуляторы и инструмент можно заказать здесь. Технику бронируйте в карточке модели.</p><div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"><a class="btn red" href="#cat-oil">Масла</a><a class="btn line" href="#cat-gear">Экипировка</a><a class="btn line" href="#cat-bat">Аккумуляторы</a></div></div></div>`;
+  return `<div class="wrap">
+    <div class="crumbs"><a href="#home">Главная</a><span>›</span><span>Корзина</span></div>
+    <h1 class="tt" style="font-size:clamp(26px,3.8vw,42px);margin-bottom:12px"><em>Корзина</em></h1>
+    <div class="cart-layout">
+      <div>${items.map(({p,q})=>`<div class="citem"><a class="pic" href="#${p.id}">${picHtml(p)}</a>
+        <div style="min-width:0"><a href="#${p.id}" style="text-decoration:none;font-weight:700">${esc(p.name)}</a><div>${stockHtml(p)}</div><div class="muted num" style="font-size:13px">${rub(p.price)} за шт.</div></div>
+        <div class="ctl"><b class="num">${rub(p.price*q)}</b><div class="qty"><button type="button" data-q="${p.id}" data-d="-1" aria-label="Меньше">−</button><input class="num" value="${q}" readonly aria-label="Количество"><button type="button" data-q="${p.id}" data-d="1" aria-label="Больше">+</button></div><button class="link" type="button" data-rm="${p.id}">Удалить</button></div></div>`).join('')}
+      </div>
+      <form class="formcard" id="orderForm" novalidate>
+        <h3 class="tt" style="font-size:18px">Оформление</h3>
+        <div class="sum"><span>Товары</span><span class="num">${rub(total)}</span></div>
+        <div class="sum"><span>Доставка</span><span class="muted" id="dCost">бесплатно (самовывоз)</span></div>
+        <div class="sum total"><span>Итого</span><span class="num">${rub(total)}</span></div>
+        ${items.some(x=>x.p.stock==='order')?'<p class="muted" style="font-size:13px">В заказе есть товары под заказ: срок 20–30 дней, подтвердим до оплаты.</p>':''}
+        <div class="field"><label for="oName">Имя</label><input class="in" id="oName" autocomplete="given-name"></div>
+        <div class="field"><label for="oPhone">Телефон</label><input class="in num" id="oPhone" inputmode="tel" autocomplete="tel" placeholder="+7 9__ ___-__-__"></div>
+        <div class="field"><span class="fl">Как ответить</span><div class="radios"><label><input type="radio" name="oVia" value="MAX" checked> MAX</label><label><input type="radio" name="oVia" value="Авито"> Авито</label><label><input type="radio" name="oVia" value="Звонок"> Звонок</label></div></div>
+        <div class="field"><label for="oGet">Получение</label>
+          <select class="in" id="oGet">
+            <option value="pick">Самовывоз — мотосалон, Коммунальная, 6</option>
+            ${STORES.filter(s=>!s.main).map((s,i)=>`<option value="pick${i+2}">Самовывоз — ${esc(s.name)} ${esc(s.addr)}</option>`).join('')}
+            <option value="city">Доставка по Братску и району</option>
+            <option value="tk">Транспортной компанией по Иркутской области</option>
+          </select></div>
+        <div class="field" id="oAddrF" hidden><label for="oAddr" id="oAddrL">Адрес</label><input class="in" id="oAddr" autocomplete="street-address"></div>
+        <p class="muted" style="font-size:13px">Оплата при получении: наличные или карта.</p>
+        <label class="consent"><input type="checkbox" id="oOk"> <span>Согласен на обработку персональных данных по <a href="#privacy">политике</a></span></label>
+        <span class="err" id="oErr" hidden></span>
+        <button class="btn red" type="submit">Отправить заказ</button>
+      </form>
+    </div></div>`;
+}
+function bindCart(){
+  document.querySelectorAll('[data-q]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.q;cart[id]=Math.max(0,(cart[id]||0)+(+b.dataset.d));if(!cart[id])delete cart[id];saveCart();render(true);}));
+  document.querySelectorAll('[data-rm]').forEach(b=>b.addEventListener('click',()=>{delete cart[b.dataset.rm];saveCart();render(true);}));
+  const get=$('#oGet'); if(!get) return;
+  get.addEventListener('change',()=>{const v=get.value;$('#oAddrF').hidden=!(v==='city'||v==='tk');$('#oAddrL').textContent=v==='tk'?'Город и терминал ТК':'Адрес доставки';
+    $('#dCost').textContent=v==='city'?'рассчитает менеджер':v==='tk'?'по тарифу ТК':'бесплатно (самовывоз)';});
+  $('#orderForm').addEventListener('submit',e=>{e.preventDefault();
+    let err=checkForm('#oName','#oPhone','#oOk');
+    if(!err&&(get.value==='city'||get.value==='tk')&&!$('#oAddr').value.trim()) err=get.value==='tk'?'Укажите город и терминал транспортной компании.':'Укажите адрес доставки.';
+    const el=$('#oErr'); if(err){el.textContent=err;el.hidden=false;return;}
+    const no='АМ-'+String(Date.now()).slice(-6); const city=get.value==='city';
+    cart={};saveCart();
+    $('#app').innerHTML=`<div class="wrap" style="padding-block:40px 64px"><div class="ok-box" role="status" style="max-width:640px"><h3>Заказ ${no} принят</h3><p>Менеджер подтвердит наличие${city?' и стоимость доставки':''} в течение 30 минут в рабочее время (пн–пт 10–19, сб–вс 10–18).</p><p>Если срочно — позвоните: <b class="num">${CONTACTS.phone}</b>.</p><p class="muted" style="font-size:12.5px">Прототип: заказ никуда не отправлен.</p><div><a class="btn line sm" href="#catalog">В каталог</a></div></div></div>`;
+  });
+}
+
+/* ======== СТРАНИЦЫ ======== */
+const PAGES={
+  credit:['Кредит и рассрочка',`
+    <p>Кредит и рассрочку на технику оформляем <b>только в мотосалоне</b> на Коммунальной, 6, павильон 25. Онлайн-заявки банкам с сайта не отправляем.</p>
+    <h2>Как это работает</h2><ol class="steps"><li><span>Выберите модель и забронируйте её на сайте или в MAX.</span></li><li><span>Приезжайте с паспортом. [Какие ещё документы нужны — уточнить.]</span></li><li><span>Отправим заявку в несколько банков из 10+, с которыми работаем. [Срок решения — уточнить.]</span></li><li><span>Подписываете договор с банком и забираете технику.</span></li></ol>
+    <p class="muted">Ставку и платёж определяет банк по вашей заявке, поэтому заранее на сайте мы их не обещаем.</p>`],
+  delivery:['Доставка и оплата',`
+    <h2>Получение</h2><ul><li><b>Самовывоз техники</b> — из мотосалона, Коммунальная, 6, павильон 25.</li><li><b>Масла, аккумуляторы, инструмент</b> — из любой из 6 точек. <a href="#stores">Адреса</a></li><li><b>По Братску и району</b> доставляем сами, стоимость отдельно. [Добавить таблицу цен]</li><li><b>По Иркутской области</b> — транспортной компанией, доставка по тарифу ТК.</li></ul>
+    <h2>Оплата</h2><ul><li>Наличные или карта в магазине и при получении.</li><li>Безналичный расчёт для организаций.</li><li>Кредит и рассрочка — в мотосалоне. <a href="#credit">Подробнее</a></li></ul>`],
+  service:['Гарантия и сервис',`
+    <p>На всю технику действует <b>гарантия производителя</b>, срок указан в документах к модели.</p>
+    <h2>Свой сервис</h2><ul><li>Предпродажная подготовка. [Что входит — уточнить]</li><li>Плановое ТО.</li><li>Гарантийный и постгарантийный ремонт.</li></ul>
+    <h2>Возврат</h2><p class="muted">[Текст о возврате и обмене по закону о защите прав потребителей подготовит юрист.]</p>`],
+  order:['Товары под заказ',`
+    <p>Нет нужной модели или цвета? Привезём под заказ, если товар есть у поставщика.</p>
+    <ul><li><b>Срок:</b> 20–30 дней.</li><li><b>Цена и срок</b> подтверждаем до оплаты.</li><li>Напишите модель в MAX или на Авито, либо нажмите «Заказать» в карточке.</li></ul>
+    <p><a class="btn red js-max" href="#" target="_blank" rel="noopener">Написать в MAX</a></p>`],
+  stores:['Магазины в Братске',`<p>Мотосалон — техника, прицепы, экипировка и кредит. В остальных пяти точках в основном масла, аккумуляторы и инструмент.</p>STORES_FULL<p class="muted">Адреса и часы филиалов — пример, добавим из 2ГИС.</p>`],
+  contacts:['Контакты',`<p>Братск, Коммунальная ул., 6, павильон 25, 1 этаж.</p><p>Пн–пт 10:00–19:00, сб–вс 10:00–18:00.</p><p><b class="num">${CONTACTS.phone}</b> — менеджеры<br><b class="num">${CONTACTS.admin}</b> — администрация</p><p><a class="btn red js-max" href="#" target="_blank" rel="noopener">Написать в MAX</a> <a class="btn line js-avito" href="#" target="_blank" rel="noopener">Авито</a></p>`],
+  privacy:['Политика обработки персональных данных',`<p class="muted">[Текст политики и отдельное согласие на обработку ПД подготовит юрист. До публикации проверить, подано ли уведомление в Роскомнадзор.]</p>`]
+};
+function page(key){
+  const [t,html]=PAGES[key], w=t.split(' ');
+  return `<div class="wrap"><div class="crumbs"><a href="#home">Главная</a><span>›</span><span>${t}</span></div>
+    <article class="prose"><h1 class="tt" style="font-size:clamp(26px,3.8vw,42px)"><em>${w[0]}</em> ${w.slice(1).join(' ')}</h1>${html.replace('STORES_FULL',storesHtml())}</article></div>`;
+}
+
+/* ======== РОУТЕР ======== */
+function render(keepScroll){
+  const h=(location.hash||'#home').slice(1);
+  let html, after=()=>{};
+  clearInterval(slideTimer);
+  document.querySelectorAll('nav.cats a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+h));
+  if(h==='home'||h===''){html=home();after=()=>{bindSlider();renderQuiz();};}
+  else if(h==='catalog'){if(!keepScroll){F.cat='all';F.q='';}html=catalog();after=bindCatalog;}
+  else if(h==='search'){F.cat='all';html=catalog();after=bindCatalog;}
+  else if(h.startsWith('cat-')&&CAT[h.slice(4)]){const c=h.slice(4);if(F.cat!==c){F.cat=c;F.brands=[];}if(!keepScroll)F.q='';html=catalog();after=bindCatalog;}
+  else if(/^p\d+$/.test(h)&&P.find(p=>p.id===h)){const p=P.find(x=>x.id===h);html=product(p);after=()=>bindProduct(p);}
+  else if(h==='cart'){html=cartPage();after=bindCart;}
+  else if(PAGES[h]){html=page(h);}
+  else {html=`<div class="wrap"><div class="empty" style="margin-block:40px"><h2 class="tt">Страница не найдена</h2><a class="btn red" href="#home">На главную</a></div></div>`;}
+  const prod=/^p\d+$/.test(h)&&P.find(p=>p.id===h);
+  document.title=prod?prod.name+' — АвтоМото Братск':'АвтоМото Братск';
+  const y=window.scrollY;
+  $('#app').innerHTML=html; after(); links();
+  window.scrollTo(0,keepScroll?y:0);
+  $('#bd')?.remove();
+}
+function links(){
+  document.querySelectorAll('.js-max').forEach(a=>a.href=CONTACTS.max);
+  document.querySelectorAll('.js-avito').forEach(a=>a.href=CONTACTS.avito);
+  document.querySelectorAll('.js-2gis').forEach(a=>a.href=CONTACTS.gis);
+}
+function init(){
+  $('#catNav').innerHTML=CATS.map(c=>`<a href="#cat-${c.id}">${c.short}</a>`).join('');
+  $('#fCats').innerHTML=CATS.slice(0,8).map(c=>`<li><a href="#cat-${c.id}">${c.short}</a></li>`).join('')+`<li><a href="#catalog">Весь каталог</a></li>`;
+  for(const id of ['hMax','fMax','mMax']) document.getElementById(id).href=CONTACTS.max;
+  $('#fAvito').href=CONTACTS.avito; $('#f2gis').href=CONTACTS.gis; $('#fVk').href=CONTACTS.vk;
+  $('#searchForm').addEventListener('submit',e=>{e.preventDefault();F.q=$('#q').value.trim();F.brands=[];if(!F.q)return;if(location.hash==='#search')render();else location.hash='search';});
+  window.addEventListener('hashchange',()=>render());
+  updCnt(); openState(); setInterval(openState,60000); render();
+}
+init();
+</script>
